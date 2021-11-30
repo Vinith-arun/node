@@ -1,5 +1,7 @@
 import express, { response } from 'express';
 import { url } from 'inspector';
+// import sequelize from 'sequelize';
+import {sequelize} from "../models";
 const cors=require('cors');
 const app:express.Application=express();
 let jso=[{"name":"vinith"}]
@@ -31,8 +33,16 @@ app.get('/ajithmovie',(req:express.Request, res:express.Response, next:express.N
     res.send(aj);
     res.end();
 });
-app.listen(9000,()=>{
-    console.log('Server running')});
+app.listen(9000,async()=>{
+    console.log('Server running')
+    try{
+    await sequelize.sync({force:true})
+    }
+    catch(e){
+        console.log(e);
+    }
+
+});
 
  
 

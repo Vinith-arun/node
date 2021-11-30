@@ -1,4 +1,5 @@
 "use strict";
+const {sequelize} = require ("./models");
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -25,6 +26,12 @@ app.get('/second', (req, res, next) => {
     res.end();
 });
 console.log('hi');
-app.listen(9000, () => {
-    console.log('Server running');
+app.listen(9000,async () => {
+    console.log('Server running')
+    try{
+    await sequelize.sync({force:true})
+    }
+    catch(e){
+        console.log(e);
+    }
 });
