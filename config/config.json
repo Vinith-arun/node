@@ -2,22 +2,22 @@
   "development": {
     "username": "admin",
     "password": "Siva2020",
-    "database": "database_development",
+    "database": "Sivadb",
     "host": "mydatabase.caqx5begmwwr.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
+    "username": "admin",
+    "password": "Siva2020",
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "mydatabase.caqx5begmwwr.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
+    "username": "admin",
+    "password": "Siva2020",
     "database": "database_production",
-    "host": "127.0.0.1",
+    "host": "mydatabase.caqx5begmwwr.ap-south-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }

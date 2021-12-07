@@ -1,27 +1,32 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Sequelize } = require(".");
+
 module.exports = (sequelize, DataTypes) => {
-  class Payment extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  Payment.init({
-    userid: DataTypes.STRING,
-    movieid: DataTypes.STRING,
-    buyingMethod: DataTypes.STRING,
-    date: DataTypes.DATE
-  }, {
-    sequelize,
-    modelName: 'Payment',
-    tableName:'paymentTable'
-  });
-  return Payment;
-};
+  const payment = sequelize.define("payment", {
+      paymentId: {
+          type: DataTypes.UUID,
+          primaryKey: true,
+          defaultValue: DataTypes.UUIDV4,
+          allowNull: false
+      },
+      userId: {
+          type: DataTypes.UUID,
+          allowNull:false
+      },
+      MovieId: {
+          type: DataTypes.UUID,
+          allowNull:false
+      },
+      paymentStatus: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false
+      },
+      movieRentType: DataTypes.STRING,
+      PaymentDate: {
+          type: 'TIMESTAMP',
+          defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+          allowNull: false
+      }
+  })
+
+  return payment;
+}
