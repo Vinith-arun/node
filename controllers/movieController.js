@@ -48,28 +48,28 @@ var getMovieDeatils = async(req,res) =>
         return res.status(500).json({"message": e});
 }}
 /**********  Limited Movie List for Home page ***********/
-var MovieLimitedList= async(req,res) =>{
-    var query = require('url').parse(req.url,true).query;
-    var movieGenre=query.genre;
-    var limiT=parseInt(query.limit);
-    try{
-        if(limiT){
-        var moviesList=await movie.findAll({
-            where:{Genre:sequelize.where(sequelize.fn('LOWER', sequelize.col('Genre')), 'LIKE', '%' + movieGenre+ '%')
-        }, limit:limiT,include: [{model: movieCast,as:"movieCast"}]
-        })
-        }else{
-            var moviesList=await movie.findAll({
-                where:{Genre:sequelize.where(sequelize.fn('LOWER', sequelize.col('Genre')), 'LIKE', '%' + movieGenre+ '%')
-            },include: [{model: movieCast,as:"movieCast"}]
-            })
-        }
-        return res.status(200).json(moviesList);
-    }catch(e){
-        console.log(e)
-        return res.status(500).json({"message": e});
-    }  
-}
+// var MovieLimitedList= async(req,res) =>{
+//     var query = require('url').parse(req.url,true).query;
+//     var movieGenre=query.genre;
+//     var limiT=parseInt(query.limit);
+//     try{
+//         if(limiT){
+//         var moviesList=await movie.findAll({
+//             where:{Genre:sequelize.where(sequelize.fn('LOWER', sequelize.col('Genre')), 'LIKE', '%' + movieGenre+ '%')
+//         }, limit:limiT,include: [{model: movieCast,as:"movieCast"}]
+//         })
+//         }else{
+//             var moviesList=await movie.findAll({
+//                 where:{Genre:sequelize.where(sequelize.fn('LOWER', sequelize.col('Genre')), 'LIKE', '%' + movieGenre+ '%')
+//             },include: [{model: movieCast,as:"movieCast"}]
+//             })
+//         }
+//         return res.status(200).json(moviesList);
+//     }catch(e){
+//         console.log(e)
+//         return res.status(500).json({"message": e});
+//     }  
+// }
 /**********  Movie List  ***********/
 var MoviesByGenre= async(req,res) =>{
     var query = require('url').parse(req.url,true).query;
@@ -94,5 +94,5 @@ var MoviesByGenre= async(req,res) =>{
     }  
 }
 module.exports={
-    addMovie,getMovieDeatils,MovieLimitedList,MoviesByGenre
+    addMovie,getMovieDeatils,MoviesByGenre
 }
